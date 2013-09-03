@@ -1,6 +1,24 @@
 /**
-* Testing LiveOSC.
-* Just a testing of how to control Ableton Live with Processing
+* Generative Flamenco.
+* Generative Flamenco analyzes an image 
+* of a couple dancing to flamenco music 
+* pixel by pixel and translating it into 
+* MIDI signals and sends it to Ableton Live, 
+* filtered by range, scale and key.
+* 
+* 2013 - Tobias Treppmann
+*/
+
+
+import oscP5.*;
+import netP5.*;
+import controlP5.*;
+//import rwmidi.*;
+import promidi.*;
+
+
+
+/**
 *
 * Sends PLAY or STOP message to Live
 * Handles incoming messages:
@@ -15,11 +33,7 @@
 * 
 */
 
-import oscP5.*;
-import netP5.*;
-import controlP5.*;
-//import rwmidi.*;
-import promidi.*;
+
 
 //OSC related libraries
 OscP5 oscP5;
@@ -355,13 +369,6 @@ void setup() {
   for(int i=0; i<a.width*a.height; i++) {
     aPixels[i] = a.pixels[i];
   }
-  
-//  // RWMidi device
-//  MidiOutputDevice devices[] = RWMidi.getOutputDevices();
-//  for (int i = 0; i < devices.length; i++) {
-//    println(i + ": " + devices[i].getName());
-//  }
-//  output = RWMidi.getOutputDevices()[0].createOutput();
   
   //OSC address mapping
   oscP5.plug(this,"incomingHandlerPlay","/live/play");
